@@ -122,5 +122,7 @@ esophageal_findings = {
     "70": esophageal_findings_final["reflux_esophagitis"],
 
     "71": esophageal_findings_final["zenkers_diverticulum"],
-    "72": esophageal_findings_final["reflux_esophagitis"]
+    "72": esophageal_findings_final["reflux_esophagitis"],
+    "73": esophageal_findings_final["suspicion_barretts_esophagus"],
+    "74": esophageal_findings_final["esophageal_candidiasis"]
 }

@@ -11,19 +11,20 @@ File is used to do the following:
     2. Create 'tne' objects for each row for use in analysis
 """
 
-import xlrd
+import math
+import pandas as pd
 import os
-from constants import file_name
-from comorbidities_dictionaries import co_morbidities
+from constants import file_name, columns_dictionary, \
+    sheet_name, associated_dictionary
 
 cwd = os.getcwd()
 full_file_name = cwd + "/" + file_name
 
-wb = xlrd.open_workbook(full_file_name)
-sheet = wb.sheet_by_index(0)
-print(type(sheet))
+xl = pd.ExcelFile(full_file_name)
+df = xl.parse(sheet_name)
 
-def replace_numbers_in_cell(sheet, row_idx, column_idx, dictionary):
+
+def replace_numbers_in_cell(df, row_idx, column_idx, dictionary):
     """
     Function is used to:
         - select a particular cell
@@ -31,7 +32,7 @@ def replace_numbers_in_cell(sheet, row_idx, column_idx, dictionary):
             more appropriate 'updated' nubmers
 
     :param
-    sheet (sheet): sheet of data
+    df (df): pandas df with the infromation
 
     :param
     row_idx (int): row to indicate the patient record
@@ -44,21 +45,69 @@ def replace_numbers_in_cell(sheet, row_idx, column_idx, dictionary):
         to new' conversions
 
     :return:
-    sheet (sheet): sheet of data - now with updated information
+    df (df): df of data - now with updated information
     """
 
     # values is a string
-    values = sheet.cell_value(row_idx, column_idx)
-    values = values.splitlines()
+    values = df.iloc[row_idx][column_idx]
+
+    if isinstance(values, int):
+        values = str(values)  # convert to a string to match keys
+        values = [values]  # convert to a list for iteration
+    elif isinstance(values, str):
+        values = values.splitlines()
+    elif math.isnan(values):
+        return df  # blank space - return immediately
+    else:
+        raise ValueError(
+            "Unanticipated input at row {row_idx}, column {column_idx}."
+            "Value {values} is of type {type}".format
+            (row_idx=row_idx,
+                column_idx=column_idx, values=values, type=type(values)))
 
     replacement_string = ""
 
     for value in values:
+
         new_number = dictionary[value]
-        new_number = str(new_number)
-        replacement_string += new_number + "\n"
 
-    # sheet.cell_value(row_idx, column_idx) = replacement_string
+        if new_number is None:
+            pass
+        else:
+            new_number = str(new_number)
+            replacement_string += new_number + "\n"
+
+    df.iat[row_idx, column_idx] = replacement_string
+
+    return df
 
 
+num_records = len(df.index) - 1  # take off headers
 
+comorbities_idx = columns_dictionary["comorbidities_col"]
+tne_indications_idx = columns_dictionary["tne_indication_col"]
+complications_idx = columns_dictionary["complications_col"]
+esophageal_procedure_idx = columns_dictionary["esophageal_procedure_col"]
+laryngeal_procedure_idx = columns_dictionary["laryngeal_procedure_col"]
+abnormal_esoph_findings_idx = columns_dictionary["abnormal_esoph_findings_col"]
+biopsy_idx = columns_dictionary["abnormal_esophageal_biopsy_results"]
+
+columns_to_replace = [
+    comorbities_idx, tne_indications_idx, complications_idx,
+    esophageal_procedure_idx, laryngeal_procedure_idx,
+    abnormal_esoph_findings_idx, biopsy_idx]
+
+
+for row in range(num_records):
+    for column in columns_to_replace:
+
+        # print(column)  # column for the associated dict
+        dictionary = associated_dictionary[column]
+
+        row_idx = row + 1  # 1 below - skip headers
+
+        df = replace_numbers_in_cell(
+            df=df, row_idx=row_idx,
+            column_idx=column, dictionary=dictionary)
+
+print(df)

@@ -47,6 +47,6 @@ esoph_procedures = {
     "13": esoph_procedures_final["tep_puncture"],
     "14": esoph_procedures_final["therapeutic_injection"],
     "15": esoph_procedures_final["peg_removal"],
-    "16": esoph_procedures_final["non_esoph_biopsy"]
+    "16": esoph_procedures_final["non_esoph_biopsy"],
     "17": esoph_procedures_final["delete"]
 }

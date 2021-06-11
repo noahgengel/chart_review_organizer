@@ -42,10 +42,10 @@ tne_indication_final = {
 tne_indication = {
     "0": tne_indication_final["globus"],
     "1": tne_indication_final["reflux"],
-    "2": tne_indication_final["dysnphagia"],
+    "2": tne_indication_final["dysphagia"],
     "3": tne_indication_final["hn_cancer_screening"],
-    "4": tne_indication_final["esophageal"],
-    "5": tne_indication_final["tep_malfunciton"],
+    "4": tne_indication_final["esophageal_stricture"],
+    "5": tne_indication_final["tep_malfunction"],
     "6": tne_indication_final["esophageal_stricture"],
     "7": tne_indication_final["chronic_throat_pain"],
     "8": tne_indication_final["hn_cancer_screening"],

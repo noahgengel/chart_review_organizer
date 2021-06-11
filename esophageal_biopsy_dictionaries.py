@@ -19,6 +19,9 @@ biopsy_final = {
     "invasive_scca": 7,
     "parakeratosis": 8,
 
+    # NOTE - the below were NOT approved by Dr. Dhar
+    "attached_gastric_cardiac": 9,
+
     "delete": None  # waiting to be approved
 }
 
@@ -36,5 +39,9 @@ biopsy = {
     "9": biopsy_final["chronic_inflammation_consistent_with_reflux"],
     "10": biopsy_final["invasive_scca"],
     "11": biopsy_final["parakeratosis"],
-    "12": biopsy_final["delete"]
+    "12": biopsy_final["delete"],
+
+    # NOTE - these replacements were not approved by Dr. Dhar
+    "13": biopsy_final["attached_gastric_cardiac"],
+    "14": biopsy_final["barretts_esoph"]
 }

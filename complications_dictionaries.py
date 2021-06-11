@@ -12,7 +12,7 @@ number to the number associated with the updated complication
 complications_final = {
     "none": 0,
     "epistaxis": 1,
-    "esophageal_performation": 2,
+    "esophageal_perforation": 2,
     "bleeding": 3,
     "gagging": 4,
     "vomiting": 5,
@@ -30,15 +30,17 @@ complications_final = {
 complications = {
     "0": complications_final["none"],
     "1": complications_final["epistaxis"],
-    "2": complications_final["esophageal_performatino"],
+    "2": complications_final["esophageal_perforation"],
     "3": complications_final["bleeding"],
     "4": complications_final["gagging"],
     "5": complications_final["vomiting"],
-
-    # still waiting for approval on below - revisit
-    "6": complications_final["other"],
-    "7": complications_final["other"],
-    "8": complications_final["other"],
-    "9": complications_final["other"],
-    "10": complications_final["other"],
+    "6": complications_final["challenge_intubating_stricture"],
+    "7": complications_final["unable_to_pass_guidewire"],
+    "8": complications_final["esophageal_perforation"],
+    "9": complications_final["oxygen_desat"],
+    "10": complications_final["oxygen_desat"],
+    "11": complications_final["discomfort"],
+    "12": complications_final["anxiety"],
+    "13": complications_final["challenge_intubating_stricture"],
+    "14": complications_final["mucosal_tear"]
 }
