@@ -1,16 +1,29 @@
-# TNE COMPLICATIONS
+"""
+File contains dictionaries for the following:
 
-# dictionary used to ensure consistency when replacing each of the
-# original complications with their most appropriate 'umbrella' term
+1. complications_final: what number is associated with the final
+complication
+
+2. complications: provides a mapping from the originally-logged
+number to the number associated with the updated complication
+"""
+
+
 complications_final = {
-    "none": "0",
-    "epistaxis": "1",
-    "esophageal_performatino": "2",
-    "bleeding": "3",
-    "gagging_stricture": "4",
-    "vomiting": "5",
+    "none": 0,
+    "epistaxis": 1,
+    "esophageal_performation": 2,
+    "bleeding": 3,
+    "gagging": 4,
+    "vomiting": 5,
+    "challenge_intubating_stricture": 6,
+    "unable_to_pass_guidewire": 7,
+    "oxygen_desat": 8,
+    "discomfort": 9,
+    "anxiety": 10,
 
-    "other": "Other"  # waiting to be approved
+    "mucosal_tear": 11,
+    "delete": None
 }
 
 

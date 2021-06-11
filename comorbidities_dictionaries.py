@@ -1,19 +1,14 @@
 """
 File contains dictionaries for the following:
 
-- Co-morbidities
-- Indications
-- Complications
-- Associated esophageal procedure
-- Associated laryngeal procedure
-- Abnormal esophageal endoscopic findings
-- Abnormal esophageal biopsy results
+1. cm_dict_final: what number is associated with the final
+co-moribidity
+
+2. co_morbidities: provides a mapping from the originally-logged
+number to the number associated with the updated co-morbidity
 """
 
-# CO-MORBIDITIES
 
-# dictionary used to ensure consistency when replacing each of the
-# original co-morbidities with their most appropriate 'umbrella' term
 cm_dict_final = {
     "none": 0,
     "hn_cancer": 1,
@@ -100,43 +95,97 @@ co_morbidities = {
     "39": cm_dict_final["delete"],
     "40": cm_dict_final["tep_fistula_malfunction"],
 
-    "41": cm_dict_final["other"],
-    "42": cm_dict_final["other"],
-    "43": cm_dict_final["other"],
-    "44": cm_dict_final["other"],
-    "45": cm_dict_final["other"],
-    "46": cm_dict_final["other"],
-    "47": cm_dict_final["other"],
-    "48": cm_dict_final["other"],
-    "49": cm_dict_final["other"],
-    "50": cm_dict_final["other"],
-    "51": cm_dict_final["other"],
-    "52": cm_dict_final["other"],
-    "53": cm_dict_final["other"],
-    "54": cm_dict_final["other"],
-    "55": cm_dict_final["other"],
-    "56": cm_dict_final["other"],
-    "57": cm_dict_final["other"],
-    "58": cm_dict_final["other"],
-    "59": cm_dict_final["other"],
-    "60": cm_dict_final["other"],
-    "61": cm_dict_final["other"],
-    "62": cm_dict_final["other"],
-    "63": cm_dict_final["other"],
-    "64": cm_dict_final["other"],
-    "65": cm_dict_final["other"],
-    "66": cm_dict_final["other"],
-    "67": cm_dict_final["other"],
-    "68": cm_dict_final["other"],
-    "69": cm_dict_final["other"],
-    "70": cm_dict_final["other"],
-    "71": cm_dict_final["other"],
-    "72": cm_dict_final["other"],
-    "73": cm_dict_final["other"],
-    "74": cm_dict_final["other"],
-    "75": cm_dict_final["other"],
-    "76": cm_dict_final["other"],
-    "77": cm_dict_final["other"],
+    "41": cm_dict_final["tep_fistula_malfunction"],
+    "42": cm_dict_final["hx_esophagectomy"],
+    "43": cm_dict_final["delete"],
+    "44": cm_dict_final["cp_muscle_dysfcn"],
+    "45": cm_dict_final["esophageal_dysmotility"],
+    "46": cm_dict_final["hx_anterior_spine_surgery"],
+    "47": cm_dict_final["neurodegenerative_disease"],
+    "48": cm_dict_final["cp_muscle_dysfcn"],
+    "49": cm_dict_final["esophageal_dysmotility"],
+    "50": cm_dict_final["esophageal_dysmotility"],
+
+    "51": cm_dict_final["hiatal_hernia"],
+    "52": cm_dict_final["delete"],
+    "53": cm_dict_final["eosinophilic_esophagitis"],
+    "54": cm_dict_final["schatzki_ring"],
+    "55": cm_dict_final["hiatal_hernia"],
+    "56": cm_dict_final["esophageal_stricture"],
+    "57": cm_dict_final["delete"],
+    "58": cm_dict_final["cervical_osteophyte"],
+    "59": cm_dict_final["cp_muscle_dysfcn"],
+    "60": cm_dict_final["delete"],
+
+    "61": cm_dict_final["cp_muscle_dysfcn"],
+    "62": cm_dict_final["delete"],
+    "63": cm_dict_final["viral_esophagitis"],
+    "64": cm_dict_final["delete"],
+    "65": cm_dict_final["delete"],
+    "66": cm_dict_final["esophageal_stricture"],
+    "67": cm_dict_final["delete"],
+    "68": cm_dict_final["reflux_esophagitis"],
+    "69": cm_dict_final["delete"],
+    "70": cm_dict_final["laryngopharyngeal_reflux"],
+
+    "71": cm_dict_final["acalasia"],
+    "72": cm_dict_final["delete"],
+    "73": cm_dict_final["delete"],
+    "74": cm_dict_final["delete"],
+    "75": cm_dict_final["esophageal_stricture"],
+    "76": cm_dict_final["neurodegenerative_disease"],
+    "77": cm_dict_final["cp_muscle_dysfcn"],
+    "78": cm_dict_final["cp_muscle_dysfcn"],
+    "79": cm_dict_final["hn_cancer"],
+    "80": cm_dict_final["esophageal_stricture"],
+
+    "81": cm_dict_final["delete"],
+    "82": cm_dict_final["cp_muscle_dysfcn"],
+    "83": cm_dict_final["delete"],
+    "84": cm_dict_final["delete"],
+    "85": cm_dict_final["delete"],
+    "86": cm_dict_final["hx_esophagectomy"],
+    "87": cm_dict_final["delete"],
+    "88": cm_dict_final["delete"],
+    "89": cm_dict_final["delete"],
+    "90": cm_dict_final["delete"],
+
+    "91": cm_dict_final["esophageal_stent"],
+    "92": cm_dict_final["delete"],
+    "93": cm_dict_final["delete"],
+    "94": cm_dict_final["delete"],
+    "95": cm_dict_final["reflux_esophagitis"],
+    "96": cm_dict_final["barretts_esophagus"],
+    "97": cm_dict_final["tep"],
+    "98": cm_dict_final["delete"],
+    "99": cm_dict_final["delete"],
+    "100": cm_dict_final["delete"],
+
+    "101": cm_dict_final["delete"],
+    "102": cm_dict_final["g_tube_dependent"],
+    "103": cm_dict_final["gastric_pull_up"],
+    "104": cm_dict_final["delete"],
+    "105": cm_dict_final["delete"],
+    "106": cm_dict_final["delete"],
+    "107": cm_dict_final["delete"],
+    "108": cm_dict_final["delete"],
+    "109": cm_dict_final["g_tube_dependent"],
+    "110": cm_dict_final["delete"],
+
+    "111": cm_dict_final["delete"],
+    "112": cm_dict_final["delete"],
+    "113": cm_dict_final["autoimmune_disease"],
+    "114": cm_dict_final["hx_anterior_spine_surgery"],
+    "115": cm_dict_final["g_tube_dependent"],
+    "116": cm_dict_final["esophageal_stricture"],
+    "117": cm_dict_final["esophageal_stricture"],
+    "118": cm_dict_final["malnourished"],
+    "119": cm_dict_final["traction_diverticulum"],
+    "120": cm_dict_final["delete"],
+
+    "121": cm_dict_final["trach_dependent"],
+    "122": cm_dict_final["chondroradionecrosis"],
+    "123": cm_dict_final["delete"]
 }
 
 
