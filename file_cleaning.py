@@ -104,10 +104,12 @@ for row in range(num_records):
         # print(column)  # column for the associated dict
         dictionary = associated_dictionary[column]
 
-        row_idx = row + 1  # 1 below - skip headers
+        row_idx = row  # 1 below - skip headers
 
         df = replace_numbers_in_cell(
             df=df, row_idx=row_idx,
             column_idx=column, dictionary=dictionary)
 
 print(df)
+
+df.to_excel("output.xlsx")

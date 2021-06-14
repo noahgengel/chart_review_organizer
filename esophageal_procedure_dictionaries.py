@@ -25,7 +25,7 @@ esoph_procedures_final = {
     "peg_removal": 11,
     "non_esoph_biopsy": 12,
 
-    "delete": None  # waiting to be approved
+    "delete": None
 }
 
 

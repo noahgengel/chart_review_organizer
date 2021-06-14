@@ -22,7 +22,7 @@ biopsy_final = {
     # NOTE - the below were NOT approved by Dr. Dhar
     "attached_gastric_cardiac": 9,
 
-    "delete": None  # waiting to be approved
+    "delete": None
 }
 
 

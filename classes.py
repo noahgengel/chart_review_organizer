@@ -11,7 +11,7 @@ class tne:
     """
 
     def __init__(
-        self, name, mrn, dob, age,
+        self, name, mrn, dob, age, sex, race,
         procedure_date, co_morbidities, prev_barium_swallow,
         tne_indication, surgeon, slp, completion, complications,
         esoph_procedure, laryngeal_procedure, abnormal_esoph_findings,
@@ -32,7 +32,17 @@ class tne:
             patient's date of birth
 
         :param age (int):
-            patient age
+            patient age at time of procedure
+
+        :param sex (int)
+            age of patient (1 = male, 2 = female)
+
+        :param race (int)
+            race of patient
+                1 = white, non-hispanic
+                2 = other, hispanic
+                3 = black
+                4 = asian
 
         :param procedure_date (datetime):
             date of the procedure
@@ -80,10 +90,12 @@ class tne:
             icd billing code
         """
 
-        self.name = name
-        self.mrn = mrn
-        self.dob = dob
-        self.age = age
+        self.name = name,
+        self.mrn = mrn,
+        self.dob = dob,
+        self.age = age,
+        self.sex = sex,
+        self.race = race,
         self.procedure_date = procedure_date,
         self.co_morbidities = co_morbidities,
         self.prev_barium_swallow = prev_barium_swallow,
