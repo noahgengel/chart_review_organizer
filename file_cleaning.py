@@ -15,7 +15,7 @@ import math
 import pandas as pd
 import os
 from constants import file_name, columns_dictionary, \
-    sheet_name, associated_dictionary
+    sheet_name, associated_dictionary, value_error_msg
 
 cwd = os.getcwd()
 full_file_name = cwd + "/" + file_name
@@ -29,10 +29,10 @@ def replace_numbers_in_cell(df, row_idx, column_idx, dictionary):
     Function is used to:
         - select a particular cell
         - replace the 'numbers' in the cell with the
-            more appropriate 'updated' nubmers
+            more appropriate 'updated' numbers
 
     :param
-    df (df): pandas df with the infromation
+    df (df): pandas df with the information
 
     :param
     row_idx (int): row to indicate the patient record
@@ -48,22 +48,22 @@ def replace_numbers_in_cell(df, row_idx, column_idx, dictionary):
     df (df): df of data - now with updated information
     """
 
-    # values is a string
     values = df.iloc[row_idx][column_idx]
 
-    if isinstance(values, int):
+    if isinstance(values, int):  # only one number
         values = str(values)  # convert to a string to match keys
         values = [values]  # convert to a list for iteration
+
     elif isinstance(values, str):
         values = values.splitlines()
-    elif math.isnan(values):
-        return df  # blank space - return immediately
+
+    elif math.isnan(values):  # blank space - return immediately
+        return df
+
     else:
         raise ValueError(
-            "Unanticipated input at row {row_idx}, column {column_idx}."
-            "Value {values} is of type {type}".format
-            (row_idx=row_idx,
-                column_idx=column_idx, values=values, type=type(values)))
+            value_error_msg.format(row_idx=row_idx, column_idx=column_idx,
+                                   values=values, type=type(values)))
 
     replacement_string = ""
 
@@ -71,13 +71,13 @@ def replace_numbers_in_cell(df, row_idx, column_idx, dictionary):
 
         new_number = dictionary[value]
 
-        if new_number is None:
+        if new_number is None:  # original is deleted
             pass
         else:
             new_number = str(new_number)
             replacement_string += new_number + "\n"
 
-    df.iat[row_idx, column_idx] = replacement_string
+    df.iat[row_idx, column_idx] = replacement_string  # replace
 
     return df
 
@@ -109,7 +109,5 @@ for row in range(num_records):
         df = replace_numbers_in_cell(
             df=df, row_idx=row_idx,
             column_idx=column, dictionary=dictionary)
-
-print(df)
 
 df.to_excel("output.xlsx")

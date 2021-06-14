@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05d0c043-2462-41fd-b5bc-acb31abafc94" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes.py" afterPath="$PROJECT_DIR$/classes.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/comorbidities_dictionaries.py" afterPath="$PROJECT_DIR$/comorbidities_dictionaries.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/constants.py" afterPath="$PROJECT_DIR$/constants.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/esophageal_biopsy_dictionaries.py" afterPath="$PROJECT_DIR$/esophageal_biopsy_dictionaries.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/esophageal_procedure_dictionaries.py" afterPath="$PROJECT_DIR$/esophageal_procedure_dictionaries.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/file_cleaning.py" afterPath="$PROJECT_DIR$/file_cleaning.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tne_indication_dictionaries.py" afterPath="$PROJECT_DIR$/tne_indication_dictionaries.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,23 +14,45 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="constants.py" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/constants.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="465">
+                    <caret line="50" column="47" lean-forward="false" selection-start-line="50" selection-start-column="47" selection-end-line="50" selection-end-column="47" />
+                    <folding>
+                      <element signature="e#63#116#0" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="tne_indication_dictionaries.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tne_indication_dictionaries.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1113">
-              <caret line="12" column="16" lean-forward="true" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+            <state relative-caret-position="465">
+              <caret line="116" column="1" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="complications_dictionaries.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/complications_dictionaries.py">
+      <file leaf-file-name="comorbidities_dictionaries.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/comorbidities_dictionaries.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="37" column="52" lean-forward="false" selection-start-line="37" selection-start-column="52" selection-end-line="37" selection-end-column="52" />
+            <state relative-caret-position="480">
+              <caret line="190" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -42,8 +61,8 @@
       <file leaf-file-name="file_cleaning.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/file_cleaning.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1266">
-              <caret line="95" column="18" lean-forward="false" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
+            <state relative-caret-position="244">
+              <caret line="89" column="43" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
               <folding>
                 <element signature="e#392#403#0" expanded="true" />
               </folding>
@@ -54,21 +73,19 @@
       <file leaf-file-name="laryngeal_procedures_dictionaries.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laryngeal_procedures_dictionaries.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="28" lean-forward="false" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+            <state relative-caret-position="330">
+              <caret line="22" column="39" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="constants.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/constants.py">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-              <folding>
-                <element signature="e#63#116#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -76,8 +93,8 @@
       <file leaf-file-name="esophageal_biopsy_dictionaries.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/esophageal_biopsy_dictionaries.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="18" lean-forward="false" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+            <state relative-caret-position="240">
+              <caret line="16" column="51" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -86,8 +103,8 @@
       <file leaf-file-name="esophageal_findings_dictionaries.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/esophageal_findings_dictionaries.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1545">
-              <caret line="126" column="59" lean-forward="false" selection-start-line="126" selection-start-column="59" selection-end-line="126" selection-end-column="59" />
+            <state relative-caret-position="202">
+              <caret line="102" column="45" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -96,8 +113,18 @@
       <file leaf-file-name="esophageal_procedure_dictionaries.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/esophageal_procedure_dictionaries.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="27" column="18" lean-forward="false" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+            <state relative-caret-position="277">
+              <caret line="37" column="41" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="complications_dictionaries.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/complications_dictionaries.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="25" column="18" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -121,14 +148,14 @@
         <option value="$PROJECT_DIR$/dictionaries.py" />
         <option value="$PROJECT_DIR$/laryngeal_procedures_dictionaries.py" />
         <option value="$PROJECT_DIR$/complications_dictionaries.py" />
-        <option value="$PROJECT_DIR$/tne_indication_dictionaries.py" />
-        <option value="$PROJECT_DIR$/comorbidities_dictionaries.py" />
-        <option value="$PROJECT_DIR$/file_cleaning.py" />
         <option value="$PROJECT_DIR$/classes.py" />
         <option value="$PROJECT_DIR$/esophageal_biopsy_dictionaries.py" />
         <option value="$PROJECT_DIR$/esophageal_findings_dictionaries.py" />
-        <option value="$PROJECT_DIR$/constants.py" />
         <option value="$PROJECT_DIR$/esophageal_procedure_dictionaries.py" />
+        <option value="$PROJECT_DIR$/constants.py" />
+        <option value="$PROJECT_DIR$/file_cleaning.py" />
+        <option value="$PROJECT_DIR$/comorbidities_dictionaries.py" />
+        <option value="$PROJECT_DIR$/tne_indication_dictionaries.py" />
       </list>
     </option>
   </component>
@@ -219,10 +246,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1014" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25772098" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32896176" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3264192" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25772098" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896176" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32568306" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969433" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -321,14 +349,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/comorbidities_dictionaries.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2199">
-          <caret line="172" column="5" lean-forward="false" selection-start-line="172" selection-start-column="5" selection-end-line="172" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classes.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1665">
@@ -337,52 +357,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/complications_dictionaries.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="37" column="52" lean-forward="false" selection-start-line="37" selection-start-column="52" selection-end-line="37" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/constants.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+        <state relative-caret-position="465">
+          <caret line="50" column="47" lean-forward="false" selection-start-line="50" selection-start-column="47" selection-end-line="50" selection-end-column="47" />
           <folding>
             <element signature="e#63#116#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/comorbidities_dictionaries.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="190" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/complications_dictionaries.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="25" column="18" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/esophageal_biopsy_dictionaries.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="18" lean-forward="false" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+        <state relative-caret-position="240">
+          <caret line="16" column="51" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/esophageal_findings_dictionaries.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1545">
-          <caret line="126" column="59" lean-forward="false" selection-start-line="126" selection-start-column="59" selection-end-line="126" selection-end-column="59" />
+        <state relative-caret-position="202">
+          <caret line="102" column="45" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/esophageal_procedure_dictionaries.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="27" column="18" lean-forward="false" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+        <state relative-caret-position="277">
+          <caret line="37" column="41" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/file_cleaning.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1266">
-          <caret line="95" column="18" lean-forward="false" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
+        <state relative-caret-position="244">
+          <caret line="89" column="43" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
           <folding>
             <element signature="e#392#403#0" expanded="true" />
           </folding>
@@ -391,16 +419,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/laryngeal_procedures_dictionaries.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="28" lean-forward="false" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+        <state relative-caret-position="330">
+          <caret line="22" column="39" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tne_indication_dictionaries.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1113">
-          <caret line="12" column="16" lean-forward="true" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+        <state relative-caret-position="465">
+          <caret line="116" column="1" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -188,5 +188,3 @@ co_morbidities = {
     "123": cm_dict_final["chondroradionecrosis"],
     "124": cm_dict_final["delete"]
 }
-
-

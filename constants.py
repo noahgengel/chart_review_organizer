@@ -46,3 +46,6 @@ associated_dictionary = {
     columns_dictionary["laryngeal_procedure_col"]: laryng_procedures,
     columns_dictionary["tne_indication_col"]: tne_indication
 }
+
+value_error_msg = """Unanticipated input at row {row_idx}, column {column_idx}.
+            Value {values} is of type {type}"""

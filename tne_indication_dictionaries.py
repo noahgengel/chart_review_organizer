@@ -115,4 +115,3 @@ tne_indication = {
     "66": tne_indication_final["foreign_body_evaluation"],
     "67": tne_indication_final["esophageal_stricture"]
 }
-
