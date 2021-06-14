@@ -66,6 +66,7 @@ def replace_numbers_in_cell(df, row_idx, column_idx, dictionary):
                                    values=values, type=type(values)))
 
     replacement_string = ""
+    new_values = []
 
     for value in values:
 
@@ -75,7 +76,11 @@ def replace_numbers_in_cell(df, row_idx, column_idx, dictionary):
             pass
         else:
             new_number = str(new_number)
-            replacement_string += new_number + "\n"
+
+            if new_number not in new_values:
+                replacement_string += new_number + "\n"
+            else:  # do not want duplicate values
+                pass
 
     df.iat[row_idx, column_idx] = replacement_string  # replace
 
