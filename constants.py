@@ -49,3 +49,5 @@ associated_dictionary = {
 
 value_error_msg = """Unanticipated input at row {row_idx}, column {column_idx}.
             Value {values} is of type {type}"""
+
+output_file = "tne_data.xlsx"

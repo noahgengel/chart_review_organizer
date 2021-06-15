@@ -15,7 +15,8 @@ import math
 import pandas as pd
 import os
 from constants import file_name, columns_dictionary, \
-    sheet_name, associated_dictionary, value_error_msg
+    sheet_name, associated_dictionary, value_error_msg, \
+    output_file
 
 cwd = os.getcwd()
 full_file_name = cwd + "/" + file_name
@@ -116,4 +117,4 @@ for row in range(num_records):
             df=df, row_idx=row_idx,
             column_idx=column, dictionary=dictionary)
 
-df.to_excel("output.xlsx")
+df.to_excel(output_file)
