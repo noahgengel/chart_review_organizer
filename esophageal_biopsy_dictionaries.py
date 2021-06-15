@@ -16,7 +16,7 @@ biopsy_final = {
     "barretts_esoph": 4,
     "chronic_inflammation_consistent_with_reflux": 5,
     "squamous_mucosa_atypia": 6,
-    "invasive_scca": 7,
+    # accidental duplicate in 7
     "parakeratosis": 8,
 
     # NOTE - the below were NOT approved by Dr. Dhar
