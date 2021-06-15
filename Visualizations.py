@@ -25,6 +25,7 @@ from constants import output_file, sheet_name, columns_dictionary
 from classes import tne_row
 
 # +
+plt.tight_layout()
 cwd = os.getcwd()
 full_file_name = cwd + "/" + output_file
 
@@ -239,13 +240,15 @@ comorbidities
 
 values
 
+fig = plt.figure()
 plt.bar(comorbidities, values, color=(0.2, 0.4, 0.6, 0.6))
 plt.xticks(rotation=90)
 plt.xlabel('Comorbidity')
 plt.ylabel('Percentage of Patients with Comorbidity')
 plt.title(f"""Comorbidity Prevalence Amongst Patients (n={num_distinct_mrns})""")
 plt.show()
-plt.savefig('comorbidity_prevalence.png')
+plt.gcf().subplots_adjust(bottom=0.8)
+fig.savefig('comorbidity_prevalence.png', bbox_inches="tight")
 
 
 # ## Visit-focused statistics
@@ -329,39 +332,42 @@ biopsy_dict, biopsy_results, biopsy_values = create_dictionary_for_visit_focused
 
 biopsy_dict
 
+fig = plt.figure()
 plt.bar(biopsy_results, biopsy_values, color=(0.2, 0.4, 0.6, 0.6))
 plt.xticks(rotation=90)
 plt.xlabel('Abnormal Biopsy Result')
 plt.ylabel('Percentage of Visits with Abnormal Biopsy Finding')
 plt.title(f"""Abnormal Biopsy Result Frequency Amongst TNE Visits (n={num_rows})""")
 plt.show()
-plt.savefig('abnormal_biopsy_values.png')
+fig.savefig('abnormal_biopsy_values.png', bbox_inches="tight")
 
 abnormal_findings_dict, abnormal_findings, abnormal_values = create_dictionary_for_visit_focused_statistics(
     attribute = "abnormal_esoph_findings", 
     relevant_dictionary = esophageal_findings_legend,
     num_rows = num_rows)
 
+fig = plt.figure()
 plt.bar(abnormal_findings, abnormal_values, color=(0.2, 0.4, 0.6, 0.6))
 plt.xticks(rotation=90)
 plt.xlabel('Abnormal Esophageal Findings')
 plt.ylabel('% of Visits with Abnormal Esophageal Findings')
 plt.title(f"""Abnormal Esophageal Findings Frequency Amongst TNE Visits (n={num_rows})""")
 plt.show()
-plt.savefig('abnormal_esophageal_findings.png')
+fig.savefig('abnormal_esophageal_findings.png', bbox_inches="tight")
 
 tne_indication_dict, tne_indications, tne_indication_values = create_dictionary_for_visit_focused_statistics(
     attribute = "tne_indication", 
     relevant_dictionary = tne_indication_legend,
     num_rows = num_rows)
 
+fig = plt.figure()
 plt.bar(tne_indications, tne_indication_values, color=(0.2, 0.4, 0.6, 0.6))
 plt.xticks(rotation=90)
 plt.xlabel('Indication for TNE')
 plt.ylabel('% of Visits with TNE Indication')
 plt.title(f"""Indication for TNE (n={num_rows})""")
 plt.show()
-plt.savefig('tne_indication_distribution.png')
+fig.savefig('tne_indication_distribution.png', bbox_inches="tight")
 
 esoph_procedures_dict, esoph_procedures, esoph_procedure_values = create_dictionary_for_visit_focused_statistics(
     attribute = "esoph_procedure", 
@@ -370,26 +376,28 @@ esoph_procedures_dict, esoph_procedures, esoph_procedure_values = create_diction
 
 print(type(esoph_procedures))
 
+fig = plt.figure()
 plt.bar(esoph_procedures, esoph_procedure_values, color=(0.2, 0.4, 0.6, 0.6))
 plt.xticks(rotation=90)
 plt.xlabel('Esophageal Procedure')
 plt.ylabel('% of Visits with Esophageal Procedure')
 plt.title(f"""Percentage of Visits with Esophageal Procedure (n={num_rows})""")
 plt.show()
-plt.savefig('esophageal_procedures.png')
+fig.savefig('esophageal_procedures.png', bbox_inches="tight")
 
 complications_dict, complications, complications_values = create_dictionary_for_visit_focused_statistics(
     attribute = "complications", 
     relevant_dictionary = complications_legend,
     num_rows = num_rows)
 
+fig = plt.figure()
 plt.bar(complications, complications_values, color=(0.2, 0.4, 0.6, 0.6))
 plt.xticks(rotation=90)
 plt.xlabel('Complication')
 plt.ylabel('% of Visits with Reported Complication')
 plt.title(f"""TNE Complication Frequency (n={num_rows})""")
 plt.show()
-plt.savefig('tne_complication_frequency.png')
+fig.savefig('tne_complication_frequency.png', bbox_inches="tight")
 
 # ## Below are selected graphs IF NOT NONE
 
@@ -399,13 +407,14 @@ biopsy_values = np.array(biopsy_values)
 biopsy_results = list(biopsy_results)[:-1]
 biopsy_results = np.array(biopsy_results)
 
+fig = plt.figure()
 plt.bar(biopsy_results, biopsy_values, color=(0.2, 0.4, 0.6, 0.6))
 plt.xticks(rotation=90)
 plt.xlabel('Abnormal Biopsy Result (if any abnormal result reported)')
 plt.ylabel('Percentage of Total Biopsies')
 plt.title(f"""Abnormal Biopsy Result Frequency Amongst Total Biopsies (n={num_rows})""")
 plt.show()
-plt.savefig('abnormal_biopsy_values_excluding_none.png')
+fig.savefig('abnormal_biopsy_values_excluding_none.png', bbox_inches="tight")
 
 complications_values = list(complications_values)[:-1]
 complications_values = np.array(complications_values)
@@ -413,10 +422,11 @@ complications_values = np.array(complications_values)
 complications = list(complications)[:-1]
 complications = np.array(complications)
 
+fig = plt.figure()
 plt.bar(complications, complications_values, color=(0.2, 0.4, 0.6, 0.6))
 plt.xticks(rotation=90)
 plt.xlabel('Complication')
 plt.ylabel('% of Visits with Reported Complication (excluding none)')
 plt.title(f"""TNE Complication Frequency, Excluding None (n={num_rows})""")
 plt.show()
-plt.savefig('tne_complication_frequency_excluding_none.png')
+fig.savefig('tne_complication_frequency_excluding_none.png', bbox_inches="tight")
