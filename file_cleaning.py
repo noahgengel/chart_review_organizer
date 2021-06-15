@@ -79,6 +79,7 @@ def replace_numbers_in_cell(df, row_idx, column_idx, dictionary):
 
             if new_number not in new_values:
                 replacement_string += new_number + "\n"
+                new_values.append(new_number)
             else:  # do not want duplicate values
                 pass
 
