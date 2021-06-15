@@ -15,7 +15,7 @@ class tne_row:
         procedure_date, co_morbidities, prev_barium_swallow,
         tne_indication, surgeon, slp, completion, complications,
         esoph_procedure, laryngeal_procedure, abnormal_esoph_findings,
-        cpt_code, icd_code):
+        abnormal_biopsy_findings, cpt_code, icd_code):
 
         """
         This class should contain all of the relevant data from a row
@@ -83,6 +83,10 @@ class tne_row:
             list of numbers that represents abnormal
             findings within the TNE
 
+        :param abnormal_biopsy_findings (list)
+            list of numbers that represents abnormal
+            findings of esophageal biopsies
+
         :param cpt_code (int):
             cpt codes billed
 
@@ -107,5 +111,6 @@ class tne_row:
         self.esoph_procedure = esoph_procedure,
         self.laryngeal_procedure = laryngeal_procedure,
         self.abnormal_esoph_findings = abnormal_esoph_findings,
+        self.abnormal_biopsy_findings = abnormal_biopsy_findings,
         self.cpt_code = cpt_code,
         self.icd_code = icd_code
