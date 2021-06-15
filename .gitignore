@@ -1,6 +1,6 @@
 # files to ignore on GitHub
 
 *.xlsx
-.idea
-__pycache
+.idea/
+*.pyc
 .DS_Store
