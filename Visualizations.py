@@ -245,7 +245,7 @@ plt.xlabel('Comorbidity')
 plt.ylabel('Percentage of Patients with Comorbidity')
 plt.title(f"""Comorbidity Prevalence Amongst Patients (n={num_distinct_mrns})""")
 plt.show()
-fig.savefig('comorbidity_prevalence.png')
+plt.savefig('comorbidity_prevalence.png')
 
 
 # ## Visit-focused statistics
@@ -335,7 +335,7 @@ plt.xlabel('Abnormal Biopsy Result')
 plt.ylabel('Percentage of Visits with Abnormal Biopsy Finding')
 plt.title(f"""Abnormal Biopsy Result Frequency Amongst TNE Visits (n={num_rows})""")
 plt.show()
-fig.savefig('abnormal_biopsy_values.png')
+plt.savefig('abnormal_biopsy_values.png')
 
 abnormal_findings_dict, abnormal_findings, abnormal_values = create_dictionary_for_visit_focused_statistics(
     attribute = "abnormal_esoph_findings", 
@@ -348,7 +348,7 @@ plt.xlabel('Abnormal Esophageal Findings')
 plt.ylabel('% of Visits with Abnormal Esophageal Findings')
 plt.title(f"""Abnormal Esophageal Findings Frequency Amongst TNE Visits (n={num_rows})""")
 plt.show()
-fig.savefig('abnormal_esophageal_findings.png')
+plt.savefig('abnormal_esophageal_findings.png')
 
 tne_indication_dict, tne_indications, tne_indication_values = create_dictionary_for_visit_focused_statistics(
     attribute = "tne_indication", 
@@ -361,7 +361,7 @@ plt.xlabel('Indication for TNE')
 plt.ylabel('% of Visits with TNE Indication')
 plt.title(f"""Indication for TNE (n={num_rows})""")
 plt.show()
-fig.savefig('tne_indication_distribution.png')
+plt.savefig('tne_indication_distribution.png')
 
 esoph_procedures_dict, esoph_procedures, esoph_procedure_values = create_dictionary_for_visit_focused_statistics(
     attribute = "esoph_procedure", 
@@ -376,7 +376,7 @@ plt.xlabel('Esophageal Procedure')
 plt.ylabel('% of Visits with Esophageal Procedure')
 plt.title(f"""Percentage of Visits with Esophageal Procedure (n={num_rows})""")
 plt.show()
-fig.savefig('esophageal_procedures.png')
+plt.savefig('esophageal_procedures.png')
 
 complications_dict, complications, complications_values = create_dictionary_for_visit_focused_statistics(
     attribute = "complications", 
@@ -389,7 +389,7 @@ plt.xlabel('Complication')
 plt.ylabel('% of Visits with Reported Complication')
 plt.title(f"""TNE Complication Frequency (n={num_rows})""")
 plt.show()
-fig.savefig('tne_complication_frequency.png')
+plt.savefig('tne_complication_frequency.png')
 
 # ## Below are selected graphs IF NOT NONE
 
@@ -405,7 +405,7 @@ plt.xlabel('Abnormal Biopsy Result (if any abnormal result reported)')
 plt.ylabel('Percentage of Total Biopsies')
 plt.title(f"""Abnormal Biopsy Result Frequency Amongst Total Biopsies (n={num_rows})""")
 plt.show()
-fig.savefig('abnormal_biopsy_values_excluding_none.png')
+plt.savefig('abnormal_biopsy_values_excluding_none.png')
 
 complications_values = list(complications_values)[:-1]
 complications_values = np.array(complications_values)
@@ -419,4 +419,4 @@ plt.xlabel('Complication')
 plt.ylabel('% of Visits with Reported Complication (excluding none)')
 plt.title(f"""TNE Complication Frequency, Excluding None (n={num_rows})""")
 plt.show()
-fig.savefig('tne_complication_frequency_excluding_none.png')
+plt.savefig('tne_complication_frequency_excluding_none.png')
