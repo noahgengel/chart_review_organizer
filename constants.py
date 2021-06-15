@@ -15,6 +15,7 @@ sheet_name = "Sheet1"
 
 
 columns_dictionary = {
+    "name_col": 0,
     "mrn_col": 1,
     "dob_col": 2,
     "age_col": 3,

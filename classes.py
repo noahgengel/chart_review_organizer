@@ -4,7 +4,7 @@ different columns of an entry
 """
 
 
-class tne:
+class tne_row:
     """
     Class is used to store the information for each row in the
     SLP data sheet.
