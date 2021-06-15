@@ -89,7 +89,7 @@ def replace_numbers_in_cell(df, row_idx, column_idx, dictionary):
     return df
 
 
-num_records = len(df.index) - 1  # take off headers
+num_records = len(df.index)
 
 comorbities_idx = columns_dictionary["comorbidities_col"]
 tne_indications_idx = columns_dictionary["tne_indication_col"]
