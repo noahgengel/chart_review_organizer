@@ -340,6 +340,8 @@ abnormal_findings_dict, abnormal_findings, abnormal_values = create_dictionary_f
     relevant_dictionary = esophageal_findings_legend,
     num_patients = num_distinct_mrns)
 
+abnormal_findings_dict
+
 fig = plt.figure()
 plt.bar(abnormal_findings, abnormal_values, color=(0.2, 0.4, 0.6, 0.6))
 plt.xticks(rotation=rotation_val)
@@ -642,6 +644,42 @@ for obj_with_biopsy in objs_with_biopsy:
 print(f"""
 There are {number_with_none} instances where a
 biopsy was performed but no abnormal finding was reported.""")
+
+# +
+n_wo_abnormal_finding = 0
+
+mrns_encountered = []
+mrn_and_associated_findings_total = {}
+
+for obj in tne_objects:
+    mrn = obj.mrn[0]
+    mrn_and_associated_findings_total[mrn] = []
+
+    abnormal_findings = obj.abnormal_esoph_findings[0]
+    
+    if isinstance(abnormal_findings, str):
+        abnormal_findings = abnormal_findings.splitlines()
+
+        for abnormal_finding in abnormal_findings:
+            mrn_and_associated_findings_total[mrn].append(abnormal_finding)
+            
+
+    elif isinstance(abnormal_findings, float) and not math.isnan(abnormal_findings):
+        finding = int(abnormal_findings)
+        mrn_and_associated_findings_total[mrn].append(finding)
+# -
+
+print(len(mrn_and_associated_findings_total))
+
+# +
+for mrn, associated_findings in mrn_and_associated_findings_total.items():
+    if len(associated_findings) and associated_findings[0] == '0':
+        n_wo_abnormal_finding += 1
+        
+print(f"""
+There are {n_wo_abnormal_finding} patients who have no abnormal
+esophageal findings in any of their visits
+""")
 # -
 
 
