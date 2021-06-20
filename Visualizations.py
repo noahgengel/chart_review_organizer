@@ -182,6 +182,8 @@ plt.ylabel("Age")
 
 plt.show()
 fig.savefig('age_box_plot.png')
+
+
 # -
 
 
@@ -190,64 +192,93 @@ fig.savefig('age_box_plot.png')
 # ### Let's look at the top comorbidities (% of patients with each comorbidity)
 #     - NOTE: This takes ALL comorbidities that a patient ever has into account
 
-# +
-cm_dict = {}
+def create_dictionary_for_patient_focused_statistics(
+    attribute, relevant_dictionary, num_patients):
+    """
+    Function is used to generate statistics for patient-centered statistics
+    
+    Parameters
+    ----------
+    attribute (property): property of the TNE objects to investigate
+    
+    relevant_dictionary (dict): dict that is used to correlate the number
+        to a full-text
+        
+    num_patients (int): number of patients in the dataset
+        
+    Returns
+    -------
+    dictionary (dict): contains key:value pairs with the following structure
+        key: text with the descriptions
+        value: percentage (with respect to entire patient population) the description occurs
+        
+    results (list): list with the text descriptions
+    
+    values (list): list with the values (in the same order as the results)
+    """
+    mrn_dict = {}
 
-for obj in tne_objects:  
-    comorbidities = obj.co_morbidities[0]
-    mrn = obj.mrn[0]
-    
-    if mrn not in cm_dict:
-        cm_dict[mrn] = []
-    
-    if isinstance(comorbidities, str):
-        comorbidities = comorbidities.splitlines()
+    # creating a dictionary with mrn:relevant conditions (in text)
+    for obj in tne_objects:
+        mrn = obj.mrn[0]
         
-        for cm in comorbidities:
-            cm = int(cm)
-            
-            if cm not in cm_dict[mrn]:
-                cm_dict[mrn].append(cm)
-        
-    elif math.isnan(comorbidities):
-        pass
-    
-    elif isinstance(comorbidities, float):
-        cm = int(comorbidities)  # put into a list
-        
-        if cm not in cm_dict[mrn]:
-            cm_dict[mrn].append(cm)
-    
-    else:
-        raise ValueError("Unanticipated type found")
+        if mrn not in mrn_dict:
+            mrn_dict[mrn] = []
 
-# +
-frequency_of_comorbidities = {}
+        # get the property to investigate
+        for property, value in vars(obj).items():
+            if str(property).lower() == attribute:
+                findings = value[0]
+    
+        if isinstance(findings, str):
+            findings = findings.splitlines()
 
-for mrn, comorbidities in cm_dict.items():
-    for cm in comorbidities:
-        cm_name = comorbidities_legend[cm]
-        
-        if cm_name not in frequency_of_comorbidities:
-            frequency_of_comorbidities[cm_name] = 1
+            for finding in findings:
+                finding = int(finding)
+                finding = relevant_dictionary[finding]
+
+                if finding not in mrn_dict[mrn]:
+                    mrn_dict[mrn].append(finding)
+
+        elif isinstance(findings, float) and not math.isnan(findings):
+            finding = int(findings)
+            finding = relevant_dictionary[finding]
+
+            if finding not in mrn_dict[mrn]:
+                mrn_dict[mrn].append(finding)
+                
+        elif math.isnan(findings):
+            pass
+
         else:
-            frequency_of_comorbidities[cm_name] += 1
-# -
+            raise ValueError("Unanticipated type found")
+    
+    dictionary = {}
 
-for cm, frequency in frequency_of_comorbidities.items():
-    frequency_percent = round(frequency / num_distinct_mrns * 100, 1)
-    frequency_of_comorbidities[cm] = frequency_percent
+    for mrn, text_descriptions in mrn_dict.items():
+        for text_description in text_descriptions:
+        
+            if text_description not in dictionary:
+                dictionary[text_description] = 1
+            else:
+                dictionary[text_description] += 1
+    
+    for text_description, frequency in dictionary.items():
+        frequency_percent = round(frequency / num_patients * 100, 1)
+        dictionary[text_description] = frequency_percent
+    
+    dictionary = dict(sorted(dictionary.items(), key=lambda item: item[1]))
 
-frequency_of_comorbidities
+    text = dictionary.keys()
+    values = dictionary.values()
+    
+    return dictionary, text, values
 
-# +
-frequency_of_comorbidities = dict(sorted(frequency_of_comorbidities.items(), key=lambda item: item[1]))
 
-comorbidities = frequency_of_comorbidities.keys()
-values = frequency_of_comorbidities.values()
-# -
-
-comorbidities
+dictionary, comorbidities, values = create_dictionary_for_patient_focused_statistics(
+    attribute = "co_morbidities",
+    relevant_dictionary = comorbidities_legend,
+    num_patients = num_distinct_mrns)
 
 values
 
@@ -255,11 +286,25 @@ fig = plt.figure()
 plt.bar(comorbidities, values, color=(0.2, 0.4, 0.6, 0.6))
 plt.xticks(rotation=rotation_val)
 plt.xlabel('Comorbidity')
-plt.ylabel('Percentage of Patients with Comorbidity')
+plt.ylabel('% of Patients with Comorbidity')
 plt.title(f"""Comorbidity Prevalence Amongst Patients (n={num_distinct_mrns})""")
 plt.show()
 plt.gcf().subplots_adjust(bottom=0.8)
 fig.savefig('comorbidity_prevalence.png', bbox_inches="tight")
+
+tne_indication_dict, tne_indications, tne_indication_values = create_dictionary_for_patient_focused_statistics(
+    attribute = "tne_indication", 
+    relevant_dictionary = tne_indication_legend,
+    num_patients = num_distinct_mrns)
+
+fig = plt.figure()
+plt.bar(tne_indications, tne_indication_values, color=(0.2, 0.4, 0.6, 0.6))
+plt.xticks(rotation=rotation_val)
+plt.xlabel('Indication for TNE')
+plt.ylabel('% of Patients with TNE Indication')
+plt.title(f"""Indication for TNE (n={num_distinct_mrns})""")
+plt.show()
+fig.savefig('tne_indication_distribution_by_patient.png', bbox_inches="tight")
 
 
 # ## Visit-focused statistics
@@ -348,7 +393,7 @@ plt.bar(biopsy_results, biopsy_values, color=(0.2, 0.4, 0.6, 0.6))
 plt.xticks(rotation=rotation_val)
 plt.xlabel('Abnormal Biopsy Result')
 plt.ylabel('% of Visits with Biopsy Finding')
-plt.title(f"""Biopsy Result Frequency Amongst TNE Visits (n={num_rows})""")
+plt.title(f"""Biopsy Result Frequencies Amongst TNE Visits (n={num_rows})""")
 plt.show()
 fig.savefig('abnormal_biopsy_values.png', bbox_inches="tight")
 
@@ -378,7 +423,7 @@ plt.xlabel('Indication for TNE')
 plt.ylabel('% of Visits with TNE Indication')
 plt.title(f"""Indication for TNE (n={num_rows})""")
 plt.show()
-fig.savefig('tne_indication_distribution.png', bbox_inches="tight")
+fig.savefig('tne_indication_distribution_by_visit.png', bbox_inches="tight")
 
 esoph_procedures_dict, esoph_procedures, esoph_procedure_values = create_dictionary_for_visit_focused_statistics(
     attribute = "esoph_procedure", 
