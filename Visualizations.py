@@ -72,19 +72,30 @@ for idx, row in df.iterrows():
     
     tne_objects.append(tne_object)
 
-num_rows = len(tne_objects)
+rotation_val = 90
+
+# +
+num_rows = 0
+
+for obj in tne_objects:
+    if isinstance(obj.co_morbidities[0], str):
+        num_rows += 1
+
+print(f"""
+There are {num_rows} rows of relevant TNE data.
+""")
 
 # +
 encountered_mrns = []
 
 for obj in tne_objects:
-    if obj.mrn not in encountered_mrns:
+    if obj.mrn not in encountered_mrns and isinstance(obj.co_morbidities[0], str):  # ensure and actual person
         encountered_mrns.append(obj.mrn)
 
 num_distinct_mrns = len(encountered_mrns)
         
 print(f"""
-    There are {num_distinct_mrns} distinct MRNs.
+There are {num_distinct_mrns} distinct MRNs.
 """)
 # -
 
@@ -99,7 +110,7 @@ ages = []
 
 for obj in tne_objects:
 
-    if obj.mrn not in encountered_mrns:
+    if obj.mrn not in encountered_mrns and isinstance(obj.co_morbidities[0], str):
         encountered_mrns.append(obj.mrn)
         
         # sex encoded as a tuple - take first
@@ -242,7 +253,7 @@ values
 
 fig = plt.figure()
 plt.bar(comorbidities, values, color=(0.2, 0.4, 0.6, 0.6))
-plt.xticks(rotation=90)
+plt.xticks(rotation=rotation_val)
 plt.xlabel('Comorbidity')
 plt.ylabel('Percentage of Patients with Comorbidity')
 plt.title(f"""Comorbidity Prevalence Amongst Patients (n={num_distinct_mrns})""")
@@ -334,10 +345,10 @@ biopsy_dict
 
 fig = plt.figure()
 plt.bar(biopsy_results, biopsy_values, color=(0.2, 0.4, 0.6, 0.6))
-plt.xticks(rotation=90)
+plt.xticks(rotation=rotation_val)
 plt.xlabel('Abnormal Biopsy Result')
-plt.ylabel('Percentage of Visits with Abnormal Biopsy Finding')
-plt.title(f"""Abnormal Biopsy Result Frequency Amongst TNE Visits (n={num_rows})""")
+plt.ylabel('% of Visits with Biopsy Finding')
+plt.title(f"""Biopsy Result Frequency Amongst TNE Visits (n={num_rows})""")
 plt.show()
 fig.savefig('abnormal_biopsy_values.png', bbox_inches="tight")
 
@@ -348,9 +359,9 @@ abnormal_findings_dict, abnormal_findings, abnormal_values = create_dictionary_f
 
 fig = plt.figure()
 plt.bar(abnormal_findings, abnormal_values, color=(0.2, 0.4, 0.6, 0.6))
-plt.xticks(rotation=90)
+plt.xticks(rotation=rotation_val)
 plt.xlabel('Abnormal Esophageal Findings')
-plt.ylabel('% of Visits with Abnormal Esophageal Findings')
+plt.ylabel('% of Visits')
 plt.title(f"""Abnormal Esophageal Findings Frequency Amongst TNE Visits (n={num_rows})""")
 plt.show()
 fig.savefig('abnormal_esophageal_findings.png', bbox_inches="tight")
@@ -362,7 +373,7 @@ tne_indication_dict, tne_indications, tne_indication_values = create_dictionary_
 
 fig = plt.figure()
 plt.bar(tne_indications, tne_indication_values, color=(0.2, 0.4, 0.6, 0.6))
-plt.xticks(rotation=90)
+plt.xticks(rotation=rotation_val)
 plt.xlabel('Indication for TNE')
 plt.ylabel('% of Visits with TNE Indication')
 plt.title(f"""Indication for TNE (n={num_rows})""")
@@ -378,7 +389,7 @@ print(type(esoph_procedures))
 
 fig = plt.figure()
 plt.bar(esoph_procedures, esoph_procedure_values, color=(0.2, 0.4, 0.6, 0.6))
-plt.xticks(rotation=90)
+plt.xticks(rotation=rotation_val)
 plt.xlabel('Esophageal Procedure')
 plt.ylabel('% of Visits with Esophageal Procedure')
 plt.title(f"""Percentage of Visits with Esophageal Procedure (n={num_rows})""")
@@ -392,7 +403,7 @@ complications_dict, complications, complications_values = create_dictionary_for_
 
 fig = plt.figure()
 plt.bar(complications, complications_values, color=(0.2, 0.4, 0.6, 0.6))
-plt.xticks(rotation=90)
+plt.xticks(rotation=rotation_val)
 plt.xlabel('Complication')
 plt.ylabel('% of Visits with Reported Complication')
 plt.title(f"""TNE Complication Frequency (n={num_rows})""")
@@ -409,10 +420,10 @@ biopsy_results = np.array(biopsy_results)
 
 fig = plt.figure()
 plt.bar(biopsy_results, biopsy_values, color=(0.2, 0.4, 0.6, 0.6))
-plt.xticks(rotation=90)
+plt.xticks(rotation=rotation_val)
 plt.xlabel('Abnormal Biopsy Result (if any abnormal result reported)')
 plt.ylabel('Percentage of Total Biopsies')
-plt.title(f"""Abnormal Biopsy Result Frequency Amongst Total Biopsies (n={num_rows})""")
+plt.title(f"""Abnormal Biopsy Result Frequency Amongst TNE Visits (n={num_rows})""")
 plt.show()
 fig.savefig('abnormal_biopsy_values_excluding_none.png', bbox_inches="tight")
 
@@ -424,9 +435,9 @@ complications = np.array(complications)
 
 fig = plt.figure()
 plt.bar(complications, complications_values, color=(0.2, 0.4, 0.6, 0.6))
-plt.xticks(rotation=90)
+plt.xticks(rotation=rotation_val)
 plt.xlabel('Complication')
-plt.ylabel('% of Visits with Reported Complication (excluding none)')
+plt.ylabel('% of Visits with Reported Complication')
 plt.title(f"""TNE Complication Frequency, Excluding None (n={num_rows})""")
 plt.show()
 fig.savefig('tne_complication_frequency_excluding_none.png', bbox_inches="tight")
