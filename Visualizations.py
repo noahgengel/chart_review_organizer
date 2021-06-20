@@ -286,15 +286,17 @@ def create_dictionary_for_patient_focused_statistics(
     return dictionary, text, values
 
 
-dictionary, comorbidities, values = create_dictionary_for_patient_focused_statistics(
+cm_dictionary, comorbidities, cm_values = create_dictionary_for_patient_focused_statistics(
     attribute = "co_morbidities",
     relevant_dictionary = comorbidities_legend,
     num_patients = num_distinct_mrns)
 
-values
+len(cm_dictionary)
+
+cm_values
 
 fig = plt.figure()
-plt.bar(comorbidities, values, color=(0.2, 0.4, 0.6, 0.6))
+plt.bar(comorbidities, cm_values, color=(0.2, 0.4, 0.6, 0.6))
 plt.xticks(rotation=rotation_val)
 plt.xlabel('Comorbidity')
 plt.ylabel('% of Patients with Comorbidity')
@@ -307,6 +309,22 @@ tne_indication_dict, tne_indications, tne_indication_values = create_dictionary_
     attribute = "tne_indication", 
     relevant_dictionary = tne_indication_legend,
     num_patients = num_distinct_mrns)
+
+# +
+tne_indication_values = list(tne_indication_values)
+print(tne_indication_values)
+tne_indication_array = np.array(tne_indication_values)
+
+x = np.percentile(tne_indication_array, 25)
+y = np.percentile(tne_indication_array, 50)
+z = np.percentile(tne_indication_array, 75)
+
+print(f"""
+The indications for TNE % were as follows:
+   25th percentile: {x}
+   Median: {y}
+   75th percentile: {z}""")
+# -
 
 fig = plt.figure()
 plt.bar(tne_indications, tne_indication_values, color=(0.2, 0.4, 0.6, 0.6))
@@ -337,6 +355,8 @@ prev_barium_dict, prev_barium, prev_barium_values = create_dictionary_for_patien
     attribute = "prev_barium_swallow", 
     relevant_dictionary = binary_dict,
     num_patients = num_distinct_mrns)
+
+prev_barium_values
 
 fig = plt.figure()
 plt.bar(prev_barium, prev_barium_values, color=(0.2, 0.4, 0.6, 0.6))
@@ -471,7 +491,7 @@ esoph_procedures_dict, esoph_procedures, esoph_procedure_values = create_diction
     relevant_dictionary = esophageal_procedure_legend,
     num_rows = num_rows)
 
-print(type(esoph_procedures))
+esoph_procedures_dict
 
 fig = plt.figure()
 plt.bar(esoph_procedures, esoph_procedure_values, color=(0.2, 0.4, 0.6, 0.6))
@@ -557,5 +577,41 @@ plt.ylabel('% of Visits with Reported Challenges')
 plt.title(f"""TNE Challenge Frequency, Excluding None (n={num_rows})""")
 plt.show()
 fig.savefig('tne_challenge_frequency_by_visit.png', bbox_inches="tight")
+
+# ### Wanting to see biopsy results - how many biopsies were performed?
+
+# +
+objs_with_biopsy = []
+biopsy = "Biopsy"
+row_num = 0
+
+for obj in tne_objects:
+
+    for property, value in vars(obj).items():
+        if str(property).lower() == 'esoph_procedure':
+            procedures = value[0]
+    
+            if isinstance(procedures, str):
+                procedures = procedures.splitlines()
+
+                for procedure in procedures:
+                    procedure = int(procedure)
+                    procedure = esophageal_procedure_legend[procedure]
+                    
+                if procedure == biopsy:
+                    objs_with_biopsy.append(obj)
+
+            elif isinstance(procedures, float) and not math.isnan(procedures):
+                procedure = int(procedures)
+                procedure = esophageal_procedure_legend[procedure]
+
+                if procedure == biopsy:
+                    objs_with_biopsy.append(obj)
+                    
+            print(f"Row number: {row_num}")
+            row_num += 1
+# -
+
+len(objs_with_biopsy)
 
 
