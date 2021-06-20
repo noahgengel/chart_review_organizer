@@ -184,8 +184,19 @@ plt.show()
 fig.savefig('age_box_plot.png')
 
 
-# -
+# +
+x = np.percentile(array, 25)
+y = np.percentile(array, 50)
+z = np.percentile(array, 75)
 
+print(f"""
+The patients have the following age characteristics:
+   25th percentile: {x}
+   Median: {y}
+   75th percentile: {z}""")
+
+
+# -
 
 # ## By patient statistics
 
