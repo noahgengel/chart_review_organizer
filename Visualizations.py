@@ -320,6 +320,22 @@ plt.title(f"""Abnormal Esophageal Findings Frequency Amongst Patients (n={num_di
 plt.show()
 fig.savefig('abnormal_esophageal_findings_by_patient.png', bbox_inches="tight")
 
+binary_dict = {0: "No", 1: "Yes"}
+
+prev_barium_dict, prev_barium, prev_barium_values = create_dictionary_for_patient_focused_statistics(
+    attribute = "prev_barium_swallow", 
+    relevant_dictionary = binary_dict,
+    num_patients = num_distinct_mrns)
+
+fig = plt.figure()
+plt.bar(prev_barium, prev_barium_values, color=(0.2, 0.4, 0.6, 0.6))
+plt.xticks(rotation=0)
+plt.xlabel('Previous Barium Swallow By Patient')
+plt.ylabel('% of Patients')
+plt.title(f"""Previous Barium Swallow Frequency Amongst Patients (n={num_distinct_mrns})""")
+plt.show()
+fig.savefig('previous_barium_swallow_by_patient.png', bbox_inches="tight")
+
 
 # ## Visit-focused statistics
 #     - This is in contrast to statistics that are on a per-patient focus
