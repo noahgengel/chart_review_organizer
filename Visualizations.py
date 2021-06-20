@@ -614,4 +614,34 @@ for obj in tne_objects:
 
 len(objs_with_biopsy)
 
+for obj_with_biopsy in objs_with_biopsy:
+    findings = obj_with_biopsy.abnormal_biopsy_findings[0]
+    print(findings)
+
+# +
+number_with_none = 0
+
+for obj_with_biopsy in objs_with_biopsy:
+    findings = obj_with_biopsy.abnormal_biopsy_findings[0]
+    
+    if isinstance(findings, str):
+        findings = findings.splitlines()
+
+        for finding in findings:
+            finding = int(finding)
+            if finding == 0:
+                number_with_none += 1
+
+    elif isinstance(findings, float) and not math.isnan(findings):
+        findings = int(findings)
+
+        if finding == 0:
+            number_with_none += 1
+
+        
+print(f"""
+There are {number_with_none} instances where a
+biopsy was performed but no abnormal finding was reported.""")
+# -
+
 
