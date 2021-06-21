@@ -465,7 +465,9 @@ abnormal_findings_dict, abnormal_findings, abnormal_values = create_dictionary_f
     relevant_dictionary = esophageal_findings_legend,
     num_rows = num_rows)
 
-fig = plt.figure()
+abnormal_findings_dict
+
+# fig = plt.figure()
 plt.bar(abnormal_findings, abnormal_values, color=(0.2, 0.4, 0.6, 0.6))
 plt.xticks(rotation=rotation_val)
 plt.xlabel('Abnormal Esophageal Findings')
@@ -609,16 +611,11 @@ for obj in tne_objects:
 
                 if procedure == biopsy:
                     objs_with_biopsy.append(obj)
-                    
-            print(f"Row number: {row_num}")
+
             row_num += 1
 # -
 
 len(objs_with_biopsy)
-
-for obj_with_biopsy in objs_with_biopsy:
-    findings = obj_with_biopsy.abnormal_biopsy_findings[0]
-    print(findings)
 
 # +
 number_with_none = 0
@@ -653,7 +650,9 @@ mrn_and_associated_findings_total = {}
 
 for obj in tne_objects:
     mrn = obj.mrn[0]
-    mrn_and_associated_findings_total[mrn] = []
+    
+    if mrn not in mrn_and_associated_findings_total:
+        mrn_and_associated_findings_total[mrn] = []
 
     abnormal_findings = obj.abnormal_esoph_findings[0]
     
@@ -661,15 +660,19 @@ for obj in tne_objects:
         abnormal_findings = abnormal_findings.splitlines()
 
         for abnormal_finding in abnormal_findings:
-            mrn_and_associated_findings_total[mrn].append(abnormal_finding)
+            if abnormal_finding not in mrn_and_associated_findings_total[mrn]:
+                mrn_and_associated_findings_total[mrn].append(abnormal_finding)
             
 
     elif isinstance(abnormal_findings, float) and not math.isnan(abnormal_findings):
         finding = int(abnormal_findings)
-        mrn_and_associated_findings_total[mrn].append(finding)
+        if finding not in mrn_and_associated_findings_total[mrn]:
+            mrn_and_associated_findings_total[mrn].append(finding)
 # -
 
 print(len(mrn_and_associated_findings_total))
+
+mrn_and_associated_findings_total
 
 # +
 for mrn, associated_findings in mrn_and_associated_findings_total.items():
@@ -680,6 +683,45 @@ print(f"""
 There are {n_wo_abnormal_finding} patients who have no abnormal
 esophageal findings in any of their visits
 """)
+
+# +
+n_wo_procedures = 0
+
+mrns_encountered = []
+mrn_and_associated_procedures = {}
+
+for obj in tne_objects:
+    mrn = obj.mrn[0]
+
+    if mrn not in mrn_and_associated_procedures:
+        mrn_and_associated_procedures[mrn] = []
+
+    procedures = obj.esoph_procedure[0]
+    
+    if isinstance(procedures, str):
+        procedures = procedures.splitlines()
+
+        for procedure in procedures:
+            if procedure not in mrn_and_associated_procedures[mrn]:
+                mrn_and_associated_procedures[mrn].append(procedure)
+            
+
+    elif isinstance(procedures, float) and not math.isnan(procedures):
+        procedure = int(procedures)
+        
+        if procedure not in mrn_and_associated_procedures[mrn]:
+            mrn_and_associated_procedures[mrn].append(procedure)
+
+# +
+for mrn, associated_procedures in mrn_and_associated_procedures.items():
+    if len(associated_procedures) and associated_procedures[0] == '0':
+        n_wo_procedures += 1
+        
+print(f"""
+There are {n_wo_abnormal_finding} patients who have no procedures in any of their visits.
+""")
 # -
+
+mrn_and_associated_procedures
 
 
