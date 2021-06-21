@@ -286,6 +286,23 @@ def create_dictionary_for_patient_focused_statistics(
     return dictionary, text, values
 
 
+esoph_procedure_dict, esoph_procedure_text, esoph_procedure_values = create_dictionary_for_patient_focused_statistics(
+    attribute = "esoph_procedure",
+    relevant_dictionary = esophageal_procedure_legend,
+    num_patients = num_distinct_mrns)
+
+esoph_procedure_dict
+
+fig = plt.figure()
+plt.bar(esoph_procedure_text, esoph_procedure_values, color=(0.2, 0.4, 0.6, 0.6))
+plt.xticks(rotation=rotation_val)
+plt.xlabel('Esophageal Procedure')
+plt.ylabel('% of Patients with Procedure')
+plt.title(f"""Procedure Prevalence Amongst Patients (n={num_distinct_mrns})""")
+plt.show()
+plt.gcf().subplots_adjust(bottom=0.8)
+fig.savefig('esoph_procedure_by_patient.png', bbox_inches="tight")
+
 cm_dictionary, comorbidities, cm_values = create_dictionary_for_patient_focused_statistics(
     attribute = "co_morbidities",
     relevant_dictionary = comorbidities_legend,
@@ -309,6 +326,8 @@ tne_indication_dict, tne_indications, tne_indication_values = create_dictionary_
     attribute = "tne_indication", 
     relevant_dictionary = tne_indication_legend,
     num_patients = num_distinct_mrns)
+
+tne_indication_dict
 
 # +
 tne_indication_values = list(tne_indication_values)
@@ -481,6 +500,8 @@ tne_indication_dict, tne_indications, tne_indication_values = create_dictionary_
     relevant_dictionary = tne_indication_legend,
     num_rows = num_rows)
 
+tne_indication_dict
+
 fig = plt.figure()
 plt.bar(tne_indications, tne_indication_values, color=(0.2, 0.4, 0.6, 0.6))
 plt.xticks(rotation=rotation_val)
@@ -525,17 +546,20 @@ plt.show()
 
 # ## Below are selected graphs IF NOT NONE
 
+biopsy_values
+
 biopsy_values = list(biopsy_values)[:-1]
 biopsy_values = np.array(biopsy_values)
 
 biopsy_results = list(biopsy_results)[:-1]
 biopsy_results = np.array(biopsy_results)
 
+print(biopsy_values)
 fig = plt.figure()
 plt.bar(biopsy_results, biopsy_values, color=(0.2, 0.4, 0.6, 0.6))
 plt.xticks(rotation=rotation_val)
 plt.xlabel('Abnormal Biopsy Result (if any abnormal result reported)')
-plt.ylabel('Percentage of Total Biopsies')
+plt.ylabel('Percentage of Visits')
 plt.title(f"""Abnormal Biopsy Result Frequency Amongst TNE Visits (n={num_rows})""")
 plt.show()
 fig.savefig('abnormal_biopsy_values_excluding_none_by_visit.png', bbox_inches="tight")
@@ -546,11 +570,15 @@ true_complications_list = ["Oxygen Desaturation", "Bleeding", "Esophageal Perfor
 
 true_complications_dict, challenges_dict = {}, {}
 
+complications_dict
+
 for key, value in complications_dict.items():
     if key in true_complications_list:
         true_complications_dict[key] = value
     else:
         challenges_dict[key] = value
+
+true_complications_dict
 
 true_complications = true_complications_dict.keys()
 true_complications_values = true_complications_dict.values()
@@ -622,6 +650,7 @@ number_with_none = 0
 
 for obj_with_biopsy in objs_with_biopsy:
     findings = obj_with_biopsy.abnormal_biopsy_findings[0]
+    print(findings)
     
     if isinstance(findings, str):
         findings = findings.splitlines()
@@ -668,15 +697,10 @@ for obj in tne_objects:
         finding = int(abnormal_findings)
         if finding not in mrn_and_associated_findings_total[mrn]:
             mrn_and_associated_findings_total[mrn].append(finding)
-# -
-
-print(len(mrn_and_associated_findings_total))
-
-mrn_and_associated_findings_total
 
 # +
 for mrn, associated_findings in mrn_and_associated_findings_total.items():
-    if len(associated_findings) and associated_findings[0] == '0':
+    if len(associated_findings) == 1 and associated_findings[0] == '0':
         n_wo_abnormal_finding += 1
         
 print(f"""
@@ -714,14 +738,78 @@ for obj in tne_objects:
 
 # +
 for mrn, associated_procedures in mrn_and_associated_procedures.items():
-    if len(associated_procedures) and associated_procedures[0] == '0':
+    if len(associated_procedures) == 1 and associated_procedures[0] == '0':
         n_wo_procedures += 1
         
 print(f"""
 There are {n_wo_abnormal_finding} patients who have no procedures in any of their visits.
 """)
-# -
 
-mrn_and_associated_procedures
+# +
+n_wo_complications = 0
+
+mrns_encountered = []
+mrn_and_complications = {}
+
+for obj in tne_objects:
+    mrn = obj.mrn[0]
+
+    if mrn not in mrn_and_complications:
+        mrn_and_complications[mrn] = []
+
+    complications = obj.complications[0]
+    
+    if isinstance(complications, str):
+        complications = complications.splitlines()
+
+        for complication in complications:
+            mrn_and_complications[mrn].append(complication)
+            
+
+    elif isinstance(complications, float) and not math.isnan(complications):
+        complication = int(complications)
+        
+        if complication not in mrn_and_complications[mrn]:
+            mrn_and_complications[mrn].append(complication)
+
+# +
+for mrn, complications in mrn_and_complications.items():
+    if len(complications) == 1 and complications[0] == '0':
+        n_wo_complications += 1
+        
+print(f"""
+There are {n_wo_complications} patients who have no complications in any of their visits.
+""")
+
+# +
+those_with_complications = {}
+
+for mrn, complications in mrn_and_complications.items():
+    
+    actual_complications = []
+    for complication in complications:
+        if complication != '0':
+            actual_complications.append(complication)
+    
+    if len(actual_complications) > 0:
+        if mrn not in those_with_complications:
+            those_with_complications[mrn] = (actual_complications)
+        elif mrn in those_with_complications:
+            those_with_complications[mrn].append(actual_complications)
+
+# +
+for mrn, complications in those_with_complications.items():
+    
+    new_list = []
+    
+    for complication in complications:
+        complication = int(complication)
+        complication_text = complications_legend[complication]
+        new_list.append(complication_text)
+    
+    those_with_complications[mrn] = new_list
+        
+those_with_complications
+# -
 
 
