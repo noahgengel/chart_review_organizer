@@ -33,6 +33,9 @@ xl = pd.ExcelFile(full_file_name)
 df = xl.parse(sheet_name)
 # -
 
+df = df.iloc[:, 1:]
+df
+
 tne_objects = []
 
 for idx, row in df.iterrows():
@@ -308,10 +311,6 @@ cm_dictionary, comorbidities, cm_values = create_dictionary_for_patient_focused_
     relevant_dictionary = comorbidities_legend,
     num_patients = num_distinct_mrns)
 
-len(cm_dictionary)
-
-cm_values
-
 fig = plt.figure()
 plt.bar(comorbidities, cm_values, color=(0.2, 0.4, 0.6, 0.6))
 plt.xticks(rotation=rotation_val)
@@ -359,7 +358,7 @@ abnormal_findings_dict, abnormal_findings, abnormal_values = create_dictionary_f
     relevant_dictionary = esophageal_findings_legend,
     num_patients = num_distinct_mrns)
 
-abnormal_findings_dict
+len(abnormal_findings_dict)
 
 fig = plt.figure()
 plt.bar(abnormal_findings, abnormal_values, color=(0.2, 0.4, 0.6, 0.6))
@@ -387,6 +386,13 @@ plt.ylabel('% of Patients')
 plt.title(f"""Previous Barium Swallow Frequency Amongst Patients (n={num_distinct_mrns})""")
 plt.show()
 fig.savefig('previous_barium_swallow_by_patient.png', bbox_inches="tight")
+
+biopsy_dict, biopsy_results, biopsy_values = create_dictionary_for_patient_focused_statistics(
+    attribute = "abnormal_biopsy_findings", 
+    relevant_dictionary = esophageal_biopsy_legend,
+    num_patients = num_distinct_mrns)
+
+biopsy_dict
 
 
 # ## Visit-focused statistics
@@ -511,6 +517,13 @@ plt.title(f"""Indication for TNE (n={num_rows})""")
 plt.show()
 fig.savefig('tne_indication_distribution_by_visit.png', bbox_inches="tight")
 
+cm_dictionary, comorbidities, cm_values = create_dictionary_for_visit_focused_statistics(
+    attribute = "co_morbidities",
+    relevant_dictionary = comorbidities_legend,
+    num_rows = num_rows)
+
+cm_dictionary
+
 esoph_procedures_dict, esoph_procedures, esoph_procedure_values = create_dictionary_for_visit_focused_statistics(
     attribute = "esoph_procedure", 
     relevant_dictionary = esophageal_procedure_legend,
@@ -597,6 +610,8 @@ fig.savefig('tne_complication_frequencyby_visit.png', bbox_inches="tight")
 
 challenges = list(challenges)[:-1]
 challenges = np.array(challenges)
+
+challenges_values
 
 challenges_values = list(challenges_values)[:-1]
 challenges_values = np.array(challenges_values)
