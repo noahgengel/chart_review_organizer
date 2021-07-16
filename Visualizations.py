@@ -469,6 +469,13 @@ def create_dictionary_for_visit_focused_statistics(
     return dictionary, results, values
 
 
+prev_barium_dict, prev_barium, prev_barium_values = create_dictionary_for_visit_focused_statistics(
+    attribute = "prev_barium_swallow", 
+    relevant_dictionary = binary_dict,
+    num_rows = num_rows)
+
+prev_barium_dict
+
 biopsy_dict, biopsy_results, biopsy_values = create_dictionary_for_visit_focused_statistics(
     attribute = "abnormal_biopsy_findings", 
     relevant_dictionary = esophageal_biopsy_legend,
