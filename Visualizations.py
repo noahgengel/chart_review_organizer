@@ -611,7 +611,7 @@ plt.bar(true_complications, true_complications_values, color=(0.2, 0.4, 0.6, 0.6
 plt.xticks(rotation=rotation_val)
 plt.xlabel('Complication')
 plt.ylabel('% of Visits with Reported Complication')
-plt.title(f"""TNE Complication Frequency (n={num_rows})""")
+plt.title(f"""TNE Complication Frequency, Excluding None (n={num_rows})""")
 plt.show()
 fig.savefig('tne_complication_frequencyby_visit.png', bbox_inches="tight")
 
