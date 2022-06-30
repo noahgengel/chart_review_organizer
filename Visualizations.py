@@ -289,15 +289,15 @@ def create_dictionary_for_patient_focused_statistics(
     return dictionary, text, values
 
 
-esoph_procedure_dict, esoph_procedure_text, esoph_procedure_values = create_dictionary_for_patient_focused_statistics(
+esoph_procedures_dict1, esoph_procedure_text1, esoph_procedure_values1 = create_dictionary_for_patient_focused_statistics(
     attribute = "esoph_procedure",
     relevant_dictionary = esophageal_procedure_legend,
     num_patients = num_distinct_mrns)
 
-esoph_procedure_dict
+esoph_procedures_dict1
 
 fig = plt.figure()
-plt.bar(esoph_procedure_text, esoph_procedure_values, color=(0.2, 0.4, 0.6, 0.6))
+plt.bar(esoph_procedure_text1, esoph_procedure_values1, color=(0.2, 0.4, 0.6, 0.6))
 plt.xticks(rotation=rotation_val)
 plt.xlabel('Esophageal Procedure')
 plt.ylabel('% of Patients with Procedure')
@@ -306,13 +306,13 @@ plt.show()
 plt.gcf().subplots_adjust(bottom=0.8)
 fig.savefig('esoph_procedure_by_patient.png', bbox_inches="tight")
 
-cm_dictionary, comorbidities, cm_values = create_dictionary_for_patient_focused_statistics(
+cm_dictionary1, comorbidities1, cm_values1 = create_dictionary_for_patient_focused_statistics(
     attribute = "co_morbidities",
     relevant_dictionary = comorbidities_legend,
     num_patients = num_distinct_mrns)
 
 fig = plt.figure()
-plt.bar(comorbidities, cm_values, color=(0.2, 0.4, 0.6, 0.6))
+plt.bar(comorbidities1, cm_values1, color=(0.2, 0.4, 0.6, 0.6))
 plt.xticks(rotation=rotation_val)
 plt.xlabel('Comorbidity')
 plt.ylabel('% of Patients with Comorbidity')
@@ -321,21 +321,21 @@ plt.show()
 plt.gcf().subplots_adjust(bottom=0.8)
 fig.savefig('comorbidity_prevalence_by_patient.png', bbox_inches="tight")
 
-tne_indication_dict, tne_indications, tne_indication_values = create_dictionary_for_patient_focused_statistics(
+tne_indication_dict1, tne_indications1, tne_indication_values1 = create_dictionary_for_patient_focused_statistics(
     attribute = "tne_indication", 
     relevant_dictionary = tne_indication_legend,
     num_patients = num_distinct_mrns)
 
-tne_indication_dict
+tne_indication_dict1
 
 # +
-tne_indication_values = list(tne_indication_values)
-print(tne_indication_values)
-tne_indication_array = np.array(tne_indication_values)
+tne_indication_values1 = list(tne_indication_values1)
+print(tne_indication_values1)
+tne_indication_array1 = np.array(tne_indication_values1)
 
-x = np.percentile(tne_indication_array, 25)
-y = np.percentile(tne_indication_array, 50)
-z = np.percentile(tne_indication_array, 75)
+x = np.percentile(tne_indication_array1, 25)
+y = np.percentile(tne_indication_array1, 50)
+z = np.percentile(tne_indication_array1, 75)
 
 print(f"""
 The indications for TNE % were as follows:
@@ -345,7 +345,7 @@ The indications for TNE % were as follows:
 # -
 
 fig = plt.figure()
-plt.bar(tne_indications, tne_indication_values, color=(0.2, 0.4, 0.6, 0.6))
+plt.bar(tne_indications1, tne_indication_values1, color=(0.2, 0.4, 0.6, 0.6))
 plt.xticks(rotation=rotation_val)
 plt.xlabel('Indication for TNE')
 plt.ylabel('% of Patients with TNE Indication')
@@ -353,21 +353,25 @@ plt.title(f"""Indication for TNE Among Patients (n={num_distinct_mrns})""")
 plt.show()
 fig.savefig('tne_indication_distribution_by_patient.png', bbox_inches="tight")
 
-abnormal_findings_dict, abnormal_findings, abnormal_values = create_dictionary_for_patient_focused_statistics(
+abnormal_findings_dict1, abnormal_findings1, abnormal_values1 = create_dictionary_for_patient_focused_statistics(
     attribute = "abnormal_esoph_findings", 
     relevant_dictionary = esophageal_findings_legend,
     num_patients = num_distinct_mrns)
 
-len(abnormal_findings_dict)
+len(abnormal_findings_dict1)
 
 fig = plt.figure()
-plt.bar(abnormal_findings, abnormal_values, color=(0.2, 0.4, 0.6, 0.6))
+plt.bar(abnormal_findings1, abnormal_values1, color=(0.2, 0.4, 0.6, 0.6))
 plt.xticks(rotation=rotation_val)
 plt.xlabel('Abnormal Esophageal Findings By Patient')
 plt.ylabel('% of Visits')
 plt.title(f"""Abnormal Esophageal Findings Frequency Amongst Patients (n={num_distinct_mrns})""")
 plt.show()
 fig.savefig('abnormal_esophageal_findings_by_patient.png', bbox_inches="tight")
+
+abnormal_findings1
+
+abnormal_values1
 
 binary_dict = {0: "No", 1: "Yes"}
 
@@ -492,15 +496,15 @@ plt.title(f"""Biopsy Result Frequencies Amongst TNE Visits (n={num_rows})""")
 plt.show()
 fig.savefig('abnormal_biopsy_values_by_visit.png', bbox_inches="tight")
 
-abnormal_findings_dict, abnormal_findings, abnormal_values = create_dictionary_for_visit_focused_statistics(
+abnormal_findings_dict2, abnormal_findings2, abnormal_values2 = create_dictionary_for_visit_focused_statistics(
     attribute = "abnormal_esoph_findings", 
     relevant_dictionary = esophageal_findings_legend,
     num_rows = num_rows)
 
-abnormal_findings_dict
+abnormal_findings_dict2
 
 # fig = plt.figure()
-plt.bar(abnormal_findings, abnormal_values, color=(0.2, 0.4, 0.6, 0.6))
+plt.bar(abnormal_findings2, abnormal_values2, color=(0.2, 0.4, 0.6, 0.6))
 plt.xticks(rotation=rotation_val)
 plt.xlabel('Abnormal Esophageal Findings')
 plt.ylabel('% of Visits')
@@ -508,15 +512,19 @@ plt.title(f"""Abnormal Esophageal Findings Frequency Amongst TNE Visits (n={num_
 plt.show()
 fig.savefig('abnormal_esophageal_findings_by_visit.png', bbox_inches="tight")
 
-tne_indication_dict, tne_indications, tne_indication_values = create_dictionary_for_visit_focused_statistics(
+abnormal_findings2
+
+abnormal_values2
+
+tne_indication_dict2, tne_indications2, tne_indication_values2 = create_dictionary_for_visit_focused_statistics(
     attribute = "tne_indication", 
     relevant_dictionary = tne_indication_legend,
     num_rows = num_rows)
 
-tne_indication_dict
+tne_indication_dict2
 
 fig = plt.figure()
-plt.bar(tne_indications, tne_indication_values, color=(0.2, 0.4, 0.6, 0.6))
+plt.bar(tne_indications2, tne_indication_values2, color=(0.2, 0.4, 0.6, 0.6))
 plt.xticks(rotation=rotation_val)
 plt.xlabel('Indication for TNE')
 plt.ylabel('% of Visits with TNE Indication')
@@ -524,22 +532,22 @@ plt.title(f"""Indication for TNE (n={num_rows})""")
 plt.show()
 fig.savefig('tne_indication_distribution_by_visit.png', bbox_inches="tight")
 
-cm_dictionary, comorbidities, cm_values = create_dictionary_for_visit_focused_statistics(
+cm_dictionary2, comorbidities2, cm_values2 = create_dictionary_for_visit_focused_statistics(
     attribute = "co_morbidities",
     relevant_dictionary = comorbidities_legend,
     num_rows = num_rows)
 
-cm_dictionary
+cm_dictionary2
 
-esoph_procedures_dict, esoph_procedures, esoph_procedure_values = create_dictionary_for_visit_focused_statistics(
+esoph_procedures_dict2, esoph_procedures2, esoph_procedure_values2 = create_dictionary_for_visit_focused_statistics(
     attribute = "esoph_procedure", 
     relevant_dictionary = esophageal_procedure_legend,
     num_rows = num_rows)
 
-esoph_procedures_dict
+esoph_procedures_dict2
 
 fig = plt.figure()
-plt.bar(esoph_procedures, esoph_procedure_values, color=(0.2, 0.4, 0.6, 0.6))
+plt.bar(esoph_procedures2, esoph_procedure_values2, color=(0.2, 0.4, 0.6, 0.6))
 plt.xticks(rotation=rotation_val)
 plt.xlabel('Esophageal Procedure')
 plt.ylabel('% of Visits with Esophageal Procedure')
@@ -588,26 +596,26 @@ print(complications)
 
 true_complications_list = ["Oxygen Desaturation", "Bleeding", "Esophageal Perforation"]
 
-true_complications_dict, challenges_dict = {}, {}
+true_complications_dict1, challenges_dict = {}, {}
 
 complications_dict
 
 for key, value in complications_dict.items():
     if key in true_complications_list:
-        true_complications_dict[key] = value
+        true_complications_dict1[key] = value
     else:
         challenges_dict[key] = value
 
-true_complications_dict
+true_complications_dict1
 
-true_complications = true_complications_dict.keys()
-true_complications_values = true_complications_dict.values()
+true_complications1 = true_complications_dict1.keys()
+true_complications_values1 = true_complications_dict1.values()
 
 challenges = challenges_dict.keys()
 challenges_values = challenges_dict.values()
 
 fig = plt.figure()
-plt.bar(true_complications, true_complications_values, color=(0.2, 0.4, 0.6, 0.6))
+plt.bar(true_complications1, true_complications_values1, color=(0.2, 0.4, 0.6, 0.6))
 plt.xticks(rotation=rotation_val)
 plt.xlabel('Complication')
 plt.ylabel('% of Visits with Reported Complication')
@@ -833,5 +841,36 @@ for mrn, complications in those_with_complications.items():
         
 those_with_complications
 # -
+
+tne_indication_dict1
+
+list_of_indications = list(tne_indications1)
+
+# +
+number_indications = len(list_of_indications)
+
+column_names = ["Indication", "Percentage of Patients", "Percentage of Visits"]
+
+final_df = pd.DataFrame(columns = column_names)
+# -
+
+final_df
+
+for idx in range(number_indications):
+    indication = list_of_indications[idx]
+    
+    # patients
+    patient_value = tne_indication_dict1[indication]
+    
+    # procedures
+    procedure_value = tne_indication_dict2[indication]
+    
+    final_df.loc[idx] = [indication] + [str(patient_value)] + [str(procedure_value)]
+
+final_df
+
+new_path = '/Users/Noah/Coding/chart_review_organizer'
+writer = pd.ExcelWriter(new_path, engine='xlsxwriter')
+final_df.to_excel(writer)
 
 
